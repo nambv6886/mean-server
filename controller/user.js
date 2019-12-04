@@ -13,17 +13,19 @@ exports.createUser = async (req, res, next) => {
     const hashPassword = await bcrypt.hash(password, 10)
     const user = new User({
       email: req.body.email,
-      password: hashPassword
+      password: hashPassword,
     });
     user.save().then(result => {
       res.status(201).json({
         message: 'User created',
-        result
+        result,
+        status: 201
       })
     }).catch(e => {
       res.status(500).json({
         error: e,
-        message: 'User create fail'
+        message: 'User create fail',
+        status: 500
       })
     });
   } else {
