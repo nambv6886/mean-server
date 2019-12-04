@@ -41,8 +41,9 @@ exports.userLoginFunction = async (req, res) => {
     // find user in db
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).json({
-        message: 'Email does not exsit'
+      return res.json({
+        message: 'Email does not exsit',
+        status: 401
       });
     }
 
@@ -61,17 +62,21 @@ exports.userLoginFunction = async (req, res) => {
         token,
         expiresIn: 60,
         email: fetchedUser.email,
-        refreshToken
+        refreshToken,
+        message: 'Login successfully',
+        status: 200
       })
     } else {
       return res.json({
-        message: 'Password is wrong'
+        message: 'Password is wrong',
+        status: 401
       })
     }
   } catch (e) {
     console.log(e);
     return res.status(401).json({
-      message: 'Auth failed'
+      message: 'Auth failed',
+      status: 401
     });
   }
 }
