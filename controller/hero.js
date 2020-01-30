@@ -8,6 +8,10 @@ let heroes = [
   { id: 17, name: 'Dynama', attack: 3, defense: 4 },
   { id: 18, name: 'Dr IQ', attack: 3, defense: 4 },
   { id: 19, name: 'Magma', attack: 3, defense: 4 },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4 },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4 },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4 },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4 },
   { id: 20, name: 'Tornado', attack: 3, defense: 4 }
 ];
 
