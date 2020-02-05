@@ -39,9 +39,14 @@ exports.updateHero = (req, res) => {
 exports.addHero = (req, res) => {
   const id = heroes[heroes.length - 1].id + 1;
   const data = req.body;
+  const url = req.protocol + "://" + req.get('host');
   const newHero = {
     name: data.name,
-    id
+    id,
+    attack: data.attack,
+    defense: data.defense,
+    heroClass: data.heroClass,
+    imagePath: url + "/public/images/" + data.imagePath
   }
   heroes.push(newHero);
   return res.status(201).json(newHero);

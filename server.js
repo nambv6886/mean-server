@@ -19,6 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cors());
+app.use(express.static('public'));
 
 app.use('/api/user', userRoute);
 app.use('/api/hero', heroRoute);
