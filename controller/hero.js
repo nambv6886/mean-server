@@ -46,7 +46,7 @@ exports.addHero = (req, res) => {
     attack: data.attack,
     defense: data.defense,
     heroClass: data.heroClass,
-    imagePath: url + "/public/images/" + data.imagePath
+    imagePath: url + "/public/images/" + req.file.filename
   }
   heroes.push(newHero);
   return res.status(201).json(newHero);
