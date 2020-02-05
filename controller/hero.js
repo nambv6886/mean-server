@@ -1,22 +1,25 @@
-let heroes = [
-  { id: 11, name: 'Dr Nice', attack: 3, defense: 4, heroClass: 'A' },
-  { id: 12, name: 'Narco', attack: 3, defense: 4, heroClass: 'A' },
-  { id: 13, name: 'Bombasto', attack: 3, defense: 4, heroClass: 'B' },
-  { id: 14, name: 'Celeritas', attack: 3, defense: 4, heroClass: 'B' },
-  { id: 15, name: 'Magneta', attack: 3, defense: 4, heroClass: 'C' },
-  { id: 16, name: 'RubberMan', attack: 3, defense: 4, heroClass: 'C' },
-  { id: 17, name: 'Dynama', attack: 3, defense: 4, heroClass: 'A' },
-  { id: 18, name: 'Dr IQ', attack: 3, defense: 4, heroClass: 'A' },
-  { id: 19, name: 'Magma', attack: 3, defense: 4, heroClass: 'B' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'C' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'C' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'D' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'D' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'A' }
-];
+// let heroes = [
+//   { id: 11, name: 'Dr Nice', attack: 3, defense: 4, heroClass: 'A' },
+//   { id: 12, name: 'Narco', attack: 3, defense: 4, heroClass: 'A' },
+//   { id: 13, name: 'Bombasto', attack: 3, defense: 4, heroClass: 'B' },
+//   { id: 14, name: 'Celeritas', attack: 3, defense: 4, heroClass: 'B' },
+//   { id: 15, name: 'Magneta', attack: 3, defense: 4, heroClass: 'C' },
+//   { id: 16, name: 'RubberMan', attack: 3, defense: 4, heroClass: 'C' },
+//   { id: 17, name: 'Dynama', attack: 3, defense: 4, heroClass: 'A' },
+//   { id: 18, name: 'Dr IQ', attack: 3, defense: 4, heroClass: 'A' },
+//   { id: 19, name: 'Magma', attack: 3, defense: 4, heroClass: 'B' },
+//   { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'C' },
+//   { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'C' },
+//   { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'D' },
+//   { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'D' },
+//   { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'A' }
+// ];
 
-exports.getAllHero = (req, res) => {
-  return res.status(200).json(heroes);
+const Hero = require('../models/hero');
+
+exports.getAllHero = async (req, res) => {
+  const heroes = await Hero.find();
+  return res.json(heroes);
 }
 
 exports.updateHero = (req, res) => {
@@ -37,19 +40,17 @@ exports.updateHero = (req, res) => {
 }
 
 exports.addHero = (req, res) => {
-  const id = heroes[heroes.length - 1].id + 1;
   const data = req.body;
   const url = req.protocol + "://" + req.get('host');
-  const newHero = {
+  const newHero = new Hero({
     name: data.name,
-    id,
     attack: data.attack,
     defense: data.defense,
     heroClass: data.heroClass,
     imagePath: url + "/public/images/" + req.file.filename
-  }
-  heroes.push(newHero);
-  return res.status(201).json(newHero);
+  });
+  const result = await newHero.save();
+  return res.status(201).json(result);
 }
 
 exports.deleteHero = (req, res) => {
