@@ -8,4 +8,4 @@ const HeroSchema = mongoose.Schema({
   imagePath: String
 })
 
-module.exports = mongoose.Model('Hero', HeroSchema);
+module.exports = mongoose.model('Hero', HeroSchema);

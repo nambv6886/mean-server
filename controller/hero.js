@@ -39,7 +39,7 @@ exports.updateHero = (req, res) => {
   })
 }
 
-exports.addHero = (req, res) => {
+exports.addHero = async (req, res) => {
   const data = req.body;
   const url = req.protocol + "://" + req.get('host');
   const newHero = new Hero({
