@@ -1,18 +1,18 @@
 let heroes = [
-  { id: 11, name: 'Dr Nice', attack: 3, defense: 4, class: 'A' },
-  { id: 12, name: 'Narco', attack: 3, defense: 4, class: 'A' },
-  { id: 13, name: 'Bombasto', attack: 3, defense: 4, class: 'B' },
-  { id: 14, name: 'Celeritas', attack: 3, defense: 4, class: 'B' },
-  { id: 15, name: 'Magneta', attack: 3, defense: 4, class: 'C' },
-  { id: 16, name: 'RubberMan', attack: 3, defense: 4, class: 'C' },
-  { id: 17, name: 'Dynama', attack: 3, defense: 4, class: 'A' },
-  { id: 18, name: 'Dr IQ', attack: 3, defense: 4, class: 'A' },
-  { id: 19, name: 'Magma', attack: 3, defense: 4, class: 'B' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, class: 'C' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, class: 'C' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, class: 'D' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, class: 'D' },
-  { id: 20, name: 'Tornado', attack: 3, defense: 4, class: 'A' }
+  { id: 11, name: 'Dr Nice', attack: 3, defense: 4, heroClass: 'A' },
+  { id: 12, name: 'Narco', attack: 3, defense: 4, heroClass: 'A' },
+  { id: 13, name: 'Bombasto', attack: 3, defense: 4, heroClass: 'B' },
+  { id: 14, name: 'Celeritas', attack: 3, defense: 4, heroClass: 'B' },
+  { id: 15, name: 'Magneta', attack: 3, defense: 4, heroClass: 'C' },
+  { id: 16, name: 'RubberMan', attack: 3, defense: 4, heroClass: 'C' },
+  { id: 17, name: 'Dynama', attack: 3, defense: 4, heroClass: 'A' },
+  { id: 18, name: 'Dr IQ', attack: 3, defense: 4, heroClass: 'A' },
+  { id: 19, name: 'Magma', attack: 3, defense: 4, heroClass: 'B' },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'C' },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'C' },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'D' },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'D' },
+  { id: 20, name: 'Tornado', attack: 3, defense: 4, heroClass: 'A' }
 ];
 
 exports.getAllHero = (req, res) => {
