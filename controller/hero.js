@@ -40,17 +40,28 @@ exports.updateHero = (req, res) => {
 }
 
 exports.addHero = async (req, res) => {
-  const data = req.body;
-  const url = req.protocol + "://" + req.get('host');
-  const newHero = new Hero({
-    name: data.name,
-    attack: data.attack,
-    defense: data.defense,
-    heroClass: data.heroClass,
-    imagePath: url + "/public/images/" + req.file.filename
-  });
-  const result = await newHero.save();
-  return res.status(201).json(result);
+  try {
+    const data = req.body;
+    const url = req.protocol + "://" + req.get('host');
+    let fileName = "";
+    if (req.file) {
+      fileName = req.file.filename
+    }
+    const newHero = new Hero({
+      name: data.name,
+      attack: data.attack,
+      defense: data.defense,
+      heroClass: data.heroClass,
+      imagePath: fileName !== "" ? url + "/public/images/" + fileName : ""
+    });
+    const result = await newHero.save();
+    return res.status(201).json(result);
+  } catch (err) {
+    console.log('Error: ', err);
+    return res.status(500).json({
+      message: "Server error"
+    })
+  }
 }
 
 exports.deleteHero = (req, res) => {
