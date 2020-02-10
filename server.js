@@ -20,7 +20,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cors());
-app.use('/images', express.static(path.join('public/images')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.use('/api/user', userRoute);
 app.use('/api/hero', heroRoute);
