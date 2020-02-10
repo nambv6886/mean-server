@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const HeroSchema = mongoose.Schema({
+  id: Number,
   name: String,
   heroClass: String,
   attack: Number,
