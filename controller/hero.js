@@ -52,7 +52,7 @@ exports.addHero = async (req, res) => {
       attack: data.attack,
       defense: data.defense,
       heroClass: data.heroClass,
-      imagePath: fileName !== "" ? url + "/public/images/" + fileName : ""
+      imagePath: fileName !== "" ? url + "/images/" + fileName : ""
     });
     const result = await newHero.save();
     return res.status(201).json(result);
