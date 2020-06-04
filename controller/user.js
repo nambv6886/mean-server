@@ -9,7 +9,7 @@ const User = require('../models/user');
 exports.createUser = async (req, res, next) => {
   const { email, password } = req.body;
   const isExist = await User.findOne({ email });
-  if(!isExist) {
+  if (!isExist) {
     const hashPassword = await bcrypt.hash(password, 10)
     const user = new User({
       email: req.body.email,
@@ -58,7 +58,7 @@ exports.userLoginFunction = async (req, res) => {
       const token = await jwt.sign({ email: fetchedUser.email }, 'superSecret', {
         expiresIn: 60
       });
-      const refreshToken = await BcryptRandomString({ length: 256, type: 'base64'});
+      const refreshToken = await BcryptRandomString({ length: 256, type: 'base64' });
       refreshTokens[refreshToken] = fetchedUser.email;
       res.status(200).json({
         token,
@@ -86,7 +86,7 @@ exports.userLoginFunction = async (req, res) => {
 
 exports.logout = async (req, res) => {
   const refreshToken = req.body.refreshToken;
-  if(refreshToken in refreshTokens) {
+  if (refreshToken in refreshTokens) {
     delete refreshTokens[refreshToken];
   }
 
@@ -95,10 +95,10 @@ exports.logout = async (req, res) => {
   })
 }
 
-exports.refresh = async(req, res) => {
+exports.refresh = async (req, res) => {
   const refreshToken = req.body.refreshToken;
-  if(refreshToken in refreshTokens) {
-    const token = jwt.sign({ email: refreshTokens[refreshToken]}, 'superSecret', {
+  if (refreshToken in refreshTokens) {
+    const token = jwt.sign({ email: refreshTokens[refreshToken] }, 'superSecret', {
       expiresIn: 60
     });
     return res.status(200).json({
